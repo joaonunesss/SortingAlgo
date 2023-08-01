@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:53:53 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 16:01:49 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:40:57 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	sort_more(t_list **stack_a, t_list **stack_b)
 
 	push(stack_b, stack_a, 'b');
 	push(stack_b, stack_a, 'b');
+	info_a.size = ft_lstsize(*stack_a);
 	while (info_a.size > 3)
 	{
-		info_a.size = ft_lstsize(*stack_a);
 		nbr2sort = find_nbr2move(*stack_a, *stack_b, info_a);
 		nbr2sort.size = ft_lstsize(*stack_a);
 		target = b_target(*stack_b, nbr2sort.content);

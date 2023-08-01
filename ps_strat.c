@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:53:33 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 15:58:20 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:27:28 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	btw_min_max(t_list *stack_b, int content_a, t_info info_a)
 
 t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a)
 {
-	t_list		*temp_a;
+	t_list	*temp_a;
 	t_info	nbr2move;
-	int			moves;
-	int			cheaper_nbr;
+	int		moves;
+	int		cheaper_nbr;
 
 	cheaper_nbr = 0;
 	temp_a = stack_a;
@@ -73,13 +73,13 @@ t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a)
 	return (nbr2move);
 }
 
-t_info	b_target(t_list *stack_b, int content_a)
+t_info	b_target(t_list *stack_b, int nbr)
 {
-	t_list		*temp_b;
+	t_list	*temp_b;
 	t_info	target;
 
 	temp_b = stack_b;
-	if (content_a > max(stack_b) || content_a < min(stack_b))
+	if (nbr > max(stack_b) || nbr < min(stack_b))
 	{
 		target.content = max(stack_b);
 		target.rotations = check_position(stack_b, target.content);
@@ -89,7 +89,7 @@ t_info	b_target(t_list *stack_b, int content_a)
 		target.content = min(stack_b);
 	while (temp_b != NULL)
 	{
-		if (content_a > temp_b->content)
+		if (nbr > temp_b->content)
 		{
 			if (target.content < temp_b->content)
 				target.content = temp_b->content;
