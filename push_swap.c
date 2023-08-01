@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:48 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/07/27 16:57:29 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:02:09 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,20 @@ int	main(int ac, char *av[])
 		checker_and_fill(av[i], &stack_a);
 		i++;
 	}
-	size = ft_lstsize(stack_a);
-	if (size == 2)
-		sort_two(&stack_a);
-	else if (size == 3)
-		sort_three(&stack_a);
-	else if (size == 4)
-		sort_four(&stack_a, &stack_b);
-	else if (size == 5)
-		sort_five(&stack_a, &stack_b);
-	else
-		sort_more(&stack_a, &stack_b);
-	printlinkedlist(stack_a);
-	freelinkedlist(stack_a);
+	if (check_sort(stack_a))
+	{
+		size = ft_lstsize(stack_a);
+		if (size == 2)
+			sort_two(&stack_a);
+		if (size == 3)
+			sort_three(&stack_a);
+		else if (size == 4)
+			sort_four(&stack_a, &stack_b);
+		else if (size == 5)
+			sort_five(&stack_a, &stack_b);
+		else
+			sort_more(&stack_a, &stack_b);
+	}
+	// printlinkedlist(stack_a);
+	// freelinkedlist(stack_a);
 }

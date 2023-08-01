@@ -6,102 +6,98 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:23:51 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/07/27 17:18:29 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:11:15 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	top_four(t_list **stack_a, t_list **stack_b, int i)
+bool	top_four(t_list **stack_a, t_list **stack_b, int index)
 {
-	if (i == 0)
+	if (index == 0)
 		push(stack_b, stack_a, 'b');
-	else if (i == 1)
+	else if (index == 1)
 	{
 		rotate(stack_a, 'a');
 		if (!check_sort(*stack_a))
-			return ;
+			return (EXIT_SUCCESS);
 		push(stack_b, stack_a, 'b');
 	}
-	else if (i == 2)
+	else if (index == 2)
 	{
 		rotate(stack_a, 'a');
 		rotate(stack_a, 'a');
 		if (!check_sort(*stack_a))
-			return ;
+			return (EXIT_SUCCESS);
 		push(stack_b, stack_a, 'b');
 	}
-	else if (i == 3)
+	else if (index == 3)
 	{
 		reverse_rotate(stack_a, 'a');
 		if (!check_sort(*stack_a))
-			return ;
+			return (EXIT_SUCCESS);
 		push(stack_b, stack_a, 'b');
 	}
+	return (EXIT_FAILURE);
 }
 
-void	top_five(t_list **stack_a, t_list **stack_b, int i)
+bool	top_five(t_list **stack_a, t_list **stack_b, int index)
 {
-	if (i <= 2)
-		top_four(stack_a, stack_b, i);
-	else if (i == 3)
+	if (index <= 2)
+		top_four(stack_a, stack_b, index);
+	else if (index == 3)
 	{
 		reverse_rotate(stack_a, 'a');
 		reverse_rotate(stack_a, 'a');
 		if (!check_sort(*stack_a))
-			return ;
+			return (EXIT_SUCCESS);
 		push(stack_b, stack_a, 'b');
 	}
-	else if (i == 4)
+	else if (index == 4)
 	{
 		reverse_rotate(stack_a, 'a');
 		if (!check_sort(*stack_a))
-			return ;
+			return (EXIT_SUCCESS);
 		push(stack_b, stack_a, 'b');
 	}
+	return (EXIT_FAILURE);
 }
 
-int	target(t_list **stack_a, int min_t)
+int	target(t_list **stack_a)
 {
 	t_list	*temp;
-	int		i;
+	int		index;
+	int		small;
 
-	i = 0;
+	index = 0;
 	temp = *stack_a;
-	min_t = min(*stack_a);
-	while (temp->content != min_t)
+	small = min(*stack_a);
+	while (temp->content != small)
 	{
 		temp = temp->next;
-		i++;
+		index++;
 	}
-	return (i);
+	return (index);
 }
 
 void	sort_four(t_list **stack_a, t_list **stack_b)
 {
-	int	i;
-	int	min;
+	int	index;
 
-	if (!check_sort(*stack_a))
-		return ;
-	min = 0;
-	i = target(stack_a, min);
-	top_four(stack_a, stack_b, i);
+	index = target(stack_a);
+	if (!top_four(stack_a, stack_b, index))
+			return ;
 	sort_three(stack_a);
 	push(stack_a, stack_b, 'a');
 }
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	int		min;
 	int		i;
 
-	if (!check_sort(*stack_a))
-		return ;
-	min = 0;
-	i = target(stack_a, min);
+	i = target(stack_a);
 	top_five(stack_a, stack_b, i);
-	i = target(stack_a, min);
+	i = target(stack_a);
 	if (!check_sort(*stack_a))
 		return ;
 	top_four(stack_a, stack_b, i);

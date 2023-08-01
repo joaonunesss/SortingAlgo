@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:20:06 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/07/27 17:48:17 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:03:48 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_error(t_list **stack_a)
 
 int	check_sort(t_list *stack_a)
 {
-	if (ft_lstsize(stack_a) == 1)
+	if (ft_lstsize (stack_a) == 1)
 		return (EXIT_SUCCESS);
 	while ((stack_a->content <= stack_a->next->content) && stack_a != NULL)
 	{

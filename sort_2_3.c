@@ -6,22 +6,22 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:32:29 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/07/27 16:38:43 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 13:09:57 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	top_min(t_list **stack_a)
+void	min_on_top(t_list **stack_a)
 {
-	if ((*stack_a)->next->next->content < (*stack_a)->next->content)
+	if ((*stack_a)->next->content > (*stack_a)->next->next->content)
 	{
 		swap(stack_a, 'a');
 		rotate(stack_a, 'a');
 	}
 }
 
-void	middle_min(t_list **stack_a)
+void	min_in_mid(t_list **stack_a)
 {
 	if ((*stack_a)->content < (*stack_a)->next->next->content)
 		swap(stack_a, 'a');
@@ -29,34 +29,28 @@ void	middle_min(t_list **stack_a)
 		rotate(stack_a, 'a');
 }
 
-void	last_min(t_list **stack_a)
+void	min_in_last(t_list **stack_a)
 {
 	if ((*stack_a)->content < (*stack_a)->next->content)
 		reverse_rotate(stack_a, 'a');
 	else
 	{
+		rotate(stack_a, 'a');
 		swap(stack_a, 'a');
-		reverse_rotate(stack_a, 'a');
 	}
 }
 
 void	sort_three(t_list **stack_a)
 {
-	int	min_t;
+	int	small;
 
-	min_t = min(*stack_a);
-	if ((*stack_a)->content == min_t)
-	{
-		top_min(stack_a);
-	}
-	if ((*stack_a)->next->content == min_t)
-	{
-		middle_min(stack_a);
-	}
-	if ((*stack_a)->next->next->content == min_t)
-	{
-		last_min(stack_a);
-	}
+	small = min(*stack_a);
+	if ((*stack_a)->content == small)
+		min_on_top(stack_a);
+	if ((*stack_a)->next->content == small)
+		min_in_mid(stack_a);
+	if ((*stack_a)->next->next->content == small)
+		min_in_last(stack_a);
 }
 
 void	sort_two(t_list **stack_a)
