@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:59:06 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 13:42:55 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:55:24 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	reverse_rotate(t_list **stack_a, char c)
 	t_list	*temp;
 
 	if (!*stack_a || !(*stack_a)->next)
-		exit_error(stack_a);
+		free_list(stack_a, 1);
 	last = ft_lstlast(*stack_a);
 	temp = *stack_a;
 	while (temp->next != last)

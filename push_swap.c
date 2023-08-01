@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:48 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 16:02:09 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:08:40 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	**split_av(char *av[], int *ac)
 	}
 	*ac = j;
 	av[j] = NULL;
+	// free(temp);
 	return (av);
 }
 
@@ -40,14 +41,14 @@ int	main(int ac, char *av[])
 	int		i;
 	int 	size;
 
-	if (ac < 2)
-		return (EXIT_FAILURE);
-	else if (ac == 2)
-		av = split_av(av, &ac);
 	i = 1;
 	stack_a = NULL;
 	stack_b = NULL;
 	temp = NULL;
+	if (ac < 2)
+		return (EXIT_FAILURE);
+	else if (ac == 2)
+		av = split_av(av, &ac);
 	while (i < ac)
 	{
 		checker_and_fill(av[i], &stack_a);
@@ -58,7 +59,7 @@ int	main(int ac, char *av[])
 		size = ft_lstsize(stack_a);
 		if (size == 2)
 			sort_two(&stack_a);
-		if (size == 3)
+		else if (size == 3)
 			sort_three(&stack_a);
 		else if (size == 4)
 			sort_four(&stack_a, &stack_b);
@@ -67,6 +68,7 @@ int	main(int ac, char *av[])
 		else
 			sort_more(&stack_a, &stack_b);
 	}
+	free_list(&stack_a, 0);
 	// printlinkedlist(stack_a);
 	// freelinkedlist(stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 12:25:15 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 13:42:47 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:55:16 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	swap(t_list **stack_a, char c)
 	int	temp;
 	
 	if (!*stack_a || !(*stack_a)->next)
-		exit_error(stack_a);
+		free_list(stack_a, 1);
 	temp = (*stack_a)->content;
 	(*stack_a)->content = (*stack_a)->next->content;
 	(*stack_a)->next->content = temp;
@@ -40,7 +40,7 @@ void	push(t_list **stack_a, t_list **stack_b, char c)
 	t_list	*top_b;
 
 	if (!(*stack_b))
-		exit_error(stack_a);
+		free_list(stack_a, 1);
 	top_b = *stack_b;
 	*stack_b = (*stack_b)->next;
 	ft_lstadd_front(stack_a, top_b);
@@ -56,7 +56,7 @@ void	rotate(t_list **stack_a, char c)
 	t_list	*top;
 
 	if (!*stack_a || !(*stack_a)->next)
-		exit_error(stack_a);
+		free_list(stack_a, 1);
 	top = *stack_a;
 	*stack_a = (*stack_a)->next;
 	last = ft_lstlast(*stack_a);

@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:47:10 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 16:15:35 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:05:10 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	reverse_rotate_both(t_list **stack_a, t_list **stack_b);
 void	printlinkedlist(t_list *head);
 void	freelinkedlist(t_list *head);
 //aux.c
-void	exit_error(t_list **stack_a);
+void	exit_error();
 int		check_sort(t_list *stack_a);
 int		ft_min_index(t_list **stack_a);
+void	free_list(t_list **lst, int flag);
+void	free_array(char *array[]);
 //sort_big.c
 void	sort_more(t_list **stack_a, t_list **stack_b);
 void	rotating_a(t_list **stack_a);
@@ -58,7 +60,7 @@ t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a);
 //strat2.c
 int		mv_calcs(t_info info_a, t_info info_b);
 //check_errors.c
-void	checker_and_fill(char *str, t_list **stack_a);
+int	checker_and_fill(char *str, t_list **stack_a);
 //sort_utils.c
 int		check_position(t_list *list, int target);
 int		min(t_list *list);

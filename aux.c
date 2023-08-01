@@ -6,17 +6,41 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 16:20:06 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/01 13:03:48 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:07:20 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	exit_error(t_list **stack_a)
+void	exit_error()
 {
-	ft_printf("Error\n");
-	free(stack_a);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
+}
+
+void	free_array(char *array[])
+{
+	int	i;
+
+	i = 1;
+	while (array[i])
+		free(array[i++]);
+	free(array);
+	exit_error();
+}
+
+void	free_list(t_list **lst, int flag)
+{
+	t_list	*temp;
+
+	while (*lst != NULL)
+	{
+		temp = *lst;
+		*lst = (*lst)->next;
+		free(temp);
+	}
+	if (flag == 1)
+		exit_error();
 }
 
 int	check_sort(t_list *stack_a)

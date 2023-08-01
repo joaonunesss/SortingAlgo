@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 15:39:57 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/07/24 12:13:04 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:10:54 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ int	check_duplicates(t_list *stack)
 	return (EXIT_SUCCESS);
 }
 
-int	check_av(char *str)
+int	check_av(char *nbr)
 {
 	int	i;
 
 	i = 0;
-	if (str[0] == '-')
+	if (nbr[0] == '-')
 		i++;
-	while (str[i])
+	while (nbr[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9')
+		if (nbr[i] >= '0' && nbr[i] <= '9')
 			i++;
 		else
 			return (EXIT_FAILURE);
@@ -56,13 +56,14 @@ int	check_av(char *str)
 	return (EXIT_SUCCESS);
 }
 
-void	checker_and_fill(char *str, t_list **stack_a)
+int	checker_and_fill(char *nbr, t_list **stack_a)
 {
-	if (check_av(str))
-		exit_error(stack_a);
-	ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(str)));
-	if (check_integer_limits(ft_atoi(str)))
-		exit_error(stack_a);
+	if (check_av(nbr))
+		free_list(stack_a, 1);
+	ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(nbr)));
+	if (check_integer_limits(ft_atoi(nbr)))
+		free_list(stack_a, 1);
 	if (check_duplicates(*stack_a))
-		exit_error(stack_a);
+		free_list(stack_a, 1);
+	return (0);
 }
