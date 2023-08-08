@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 16:23:51 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/07 16:47:52 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:12:57 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,14 @@ void	sort_four(t_list **stack_a, t_list **stack_b)
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	int		index;
+	int		i;
 
-	index = find_min_index(stack_a);
-	srt_index_5(stack_a, stack_b, index);
-	index = find_min_index(stack_a);
+	i = find_min_index(stack_a);
+	srt_index_5(stack_a, stack_b, i);
+	i = find_min_index(stack_a);
 	if (!check_sort(*stack_a))
 		return ;
-	srt_index_4(stack_a, stack_b, index);
+	srt_index_4(stack_a, stack_b, i);
 	sort_three(stack_a);
 	push(stack_a, stack_b, 'a');
 	push(stack_a, stack_b, 'a');

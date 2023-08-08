@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:52:18 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/08 12:43:04 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:13:08 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ int	find_min(t_list *list)
 		list = list->next;
 	}
 	return (min);
+}
+
+int	check_position(t_list *list, int target)
+{
+	int	i;
+
+	i = 0;
+	while (list->content != target)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
 }
 
 int	ft_lstsize(t_list *stack_a)

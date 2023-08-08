@@ -64,7 +64,7 @@ void	check_av(char **av, int flag)
 				k++;
 			else
 			{
-				if (!flag)
+				if (flag == 0)
 					free_array(av, 0);
 				exit_error();
 			}
@@ -87,17 +87,4 @@ int	check_sort(t_list *stack_a)
 		return (EXIT_SUCCESS);
 	else
 		return (EXIT_FAILURE);
-}
-
-int	check_position(t_list *list, int target)
-{
-	int	index;
-
-	index = 0;
-	while (list->content != target)
-	{
-		list = list->next;
-		index++;
-	}
-	return (index);
 }

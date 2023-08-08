@@ -6,7 +6,7 @@
 #    By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 14:45:09 by jmarinho          #+#    #+#              #
-#    Updated: 2023/08/08 12:48:41 by jmarinho         ###   ########.fr        #
+#    Updated: 2023/08/08 13:11:48 by jmarinho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MAKE = make -C
 
 LIBFT_PATH = lib/libft
 
-LIBFT = -L ${LIBFT_PATH} -l ft
+LIBFT = -L ${LIBFT_PATH} -lft
 
 all: ${NAME}
 

@@ -6,13 +6,12 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:53:53 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/08 12:42:07 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:13:02 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-//se o numero em a estiver fora dos extremos de b usa o max de b para calcular 
 int	min_max(t_list *stack_b, t_info info_a)
 {
 	t_info	info_b;
@@ -73,7 +72,6 @@ t_info	find_target_in_b(t_list *stack_b, int nbr)
 	return (target);
 }
 
-//calcular qual o numero em a que custa menos movimentos para passar para b
 t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a)
 {
 	t_list	*temp_a;
