@@ -6,15 +6,14 @@
 #    By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 14:45:09 by jmarinho          #+#    #+#              #
-#    Updated: 2023/08/01 17:21:03 by jmarinho         ###   ########.fr        #
+#    Updated: 2023/08/08 12:48:41 by jmarinho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-SRC = push_swap.c aux.c moves.c moves2.c check_errors.c \
-		ps_sort_big.c ps_sort_big2.c ps_sort_big3.c \
-			ps_strat.c ps_strat2.c sort_2_3.c sort_4_5.c ps_sort_utils.c \
-				printing.c \
+SRC = src/push_swap.c src/free_and_exit.c src/moves.c src/moves2.c src/checker.c \
+		src/sort_more.c src/sort_more2_execute.c src/sort_more3_push_a.c \
+			src/calc_moves.c src/sort_2_3.c src/sort_4_5.c src/sort_utils.c \
 
 NAME = push_swap
 
@@ -28,7 +27,7 @@ MAKE = make -C
 
 LIBFT_PATH = lib/libft
 
-LIBFT = -L ${LIBFT_PATH} -lft
+LIBFT = -L ${LIBFT_PATH} -l ft
 
 all: ${NAME}
 
