@@ -88,3 +88,16 @@ int	check_sort(t_list *stack_a)
 	else
 		return (EXIT_FAILURE);
 }
+
+int	check_position(t_list *list, int target)
+{
+	int	i;
+
+	i = 0;
+	while (list->content != target)
+	{
+		i++;
+		list = list->next;
+	}
+	return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:48 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/08 13:12:53 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:19:44 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ void	if_ac_2(t_list *stack_a, t_list *stack_b, char **av, int ac)
 	check_av(av, 0);
 	stack_a = stack_init(av, 0);
 	free_array(av, 0);
-	check_integer_limits(stack_a);
-	check_duplicates(stack_a);
-	if (ac >= 2)
-		roulette(&stack_a, &stack_b);
-	free_list(&stack_a, 0);
-	exit(EXIT_SUCCESS);
 }
 
 int	main(int ac, char *av[])
@@ -55,20 +49,18 @@ int	main(int ac, char *av[])
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (ac < 2 || av[1][0] == '\0')
+	if (ac < 2|| av[1][0] == '\0')
 		return (EXIT_FAILURE);
-	else if (av[1][0] == ' ')
-		exit_error();
-	else if (ac == 2 && ft_strchr(av[1], ' '))
+	else if (ac == 2)
 		if_ac_2(stack_a, stack_b, av, ac);
 	else
 	{
 		check_av(av, 1);
 		stack_a = stack_init(av, 1);
-		check_integer_limits(stack_a);
-		check_duplicates(stack_a);
-		if (ac >= 2)
-			roulette(&stack_a, &stack_b);
-		free_list(&stack_a, 0);
 	}
+	check_integer_limits(stack_a);
+	check_duplicates(stack_a);
+	if (ac >= 2)
+		roulette(&stack_a, &stack_b);
+	free_list(&stack_a, 0);
 }

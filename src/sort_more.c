@@ -6,12 +6,13 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:53:53 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/08 13:13:02 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:44:32 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+//se o nr estiver fora dos extremos queremos o MAX de b no topo e usamos para calcular o nr de moves
 int	min_max(t_list *stack_b, t_info info_a)
 {
 	t_info	info_b;
@@ -23,6 +24,7 @@ int	min_max(t_list *stack_b, t_info info_a)
 	return (mv_calcs(info_a, info_b));
 }
 
+//se o nr estiver dentro dos extremos queremos o MIN de b no topo e usamos para calcular o nr de moves
 int	btw_min_max(t_list *stack_b, int content_a, t_info info_a)
 {
 	t_list		*temp_b;
@@ -45,6 +47,7 @@ int	btw_min_max(t_list *stack_b, int content_a, t_info info_a)
 	return (mv_calcs(info_a, info_b));
 }
 
+//novamente buscar o numero em b que queremos no topo da stack_b (PODEMOS OTIMIZAR GUARDANDO ESTE VALOR NAS FUNCOES DE CIMA)
 t_info	find_target_in_b(t_list *stack_b, int nbr)
 {
 	t_list	*temp_b;
@@ -72,6 +75,7 @@ t_info	find_target_in_b(t_list *stack_b, int nbr)
 	return (target);
 }
 
+//procura o numero em a que custa menos movimentos para passar para b
 t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a)
 {
 	t_list	*temp_a;
@@ -83,13 +87,11 @@ t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a)
 	temp_a = stack_a;
 	while (temp_a != NULL)
 	{
-		if (temp_a->content > find_max(stack_b)
-			|| temp_a->content < find_min(stack_b))
+		if (temp_a->content > find_max(stack_b) || temp_a->content < find_min(stack_b))//se estiver fora dos extremos de b
 			moves = min_max(stack_b, info_a);
-		else if (temp_a->content < find_max(stack_b)
-			&& temp_a->content > find_min(stack_b))
+		else if (temp_a->content < find_max(stack_b) && temp_a->content > find_min(stack_b))//se estiver dentro dos extremos de b
 			moves = btw_min_max(stack_b, temp_a->content, info_a);
-		if (cheaper_nbr > moves || info_a.rotations == 0)
+		if (cheaper_nbr > moves || info_a.rotations == 0)//para primeira passagem e quando encontra um numero que custa menos que o cheapest
 		{
 			cheaper_nbr = moves;
 			nbr2move.rotations = info_a.rotations;
@@ -121,6 +123,7 @@ void	sort_more(t_list **stack_a, t_list **stack_b)
 		info_a.size = ft_lstsize(*stack_a);
 	}
 	sort_three(stack_a);
-	put_all_a(stack_a, stack_b);
-	rotating_a(stack_a);
+	put_all_a(stack_a, stack_b);//push de b para a no lugar respectivo
+	if (check_sort(*stack_a))
+		rotating_a(stack_a);//se ainda nao estiver na ordem correcta vai rodar a ate o MIN de a estiver no topo
 }
