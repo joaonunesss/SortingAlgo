@@ -6,13 +6,12 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:53:42 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/08 13:43:41 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/09 13:17:37 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-//se ainda nao estiver correcto vai rodar a ate o MIN de a estiver no topo
 void	rotating_a(t_list **stack_a)
 {
 	int	size;
@@ -29,7 +28,6 @@ void	rotating_a(t_list **stack_a)
 	}
 }
 
-//se estiver fora dos extremos de a usa o MIN da a no topo e pusha
 void	sort_min_max(t_list **stack_a, t_list **stack_b, int size)
 {
 	int	position;
@@ -45,7 +43,6 @@ void	sort_min_max(t_list **stack_a, t_list **stack_b, int size)
 	push(stack_a, stack_b, 'a');
 }
 
-//se estiver dentro dos extremos de a usa o MAX da a no topo e pusha
 void	sort_btw_min_max(t_list **stack_a, t_list **stack_b, int size)
 {
 	t_list	*temp_a;
@@ -71,7 +68,6 @@ void	sort_btw_min_max(t_list **stack_a, t_list **stack_b, int size)
 	push(stack_a, stack_b, 'a');
 }
 
-//passa tudo de b para a conforme o numero que esteja no tpo esteja fora ou dentro dos extremos de a
 void	put_all_a(t_list **stack_a, t_list **stack_b)
 {
 	int		size;
@@ -79,9 +75,11 @@ void	put_all_a(t_list **stack_a, t_list **stack_b)
 	while (*stack_b != NULL)
 	{
 		size = ft_lstsize(*stack_a);
-		if ((*stack_b)->content > find_max(*stack_a) || (*stack_b)->content < find_min(*stack_a))
+		if ((*stack_b)->content > find_max(*stack_a)
+			|| (*stack_b)->content < find_min(*stack_a))
 			sort_min_max(stack_a, stack_b, size);
-		else if ((*stack_b)->content < find_max(*stack_a) && (*stack_b)->content > find_min(*stack_a))
+		else if ((*stack_b)->content < find_max(*stack_a)
+			&& (*stack_b)->content > find_min(*stack_a))
 			sort_btw_min_max(stack_a, stack_b, size);
 	}
 }

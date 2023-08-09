@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:02:48 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/08 13:19:44 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:46:55 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	roulette(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	if_ac_2(t_list *stack_a, t_list *stack_b, char **av, int ac)
+void	if_ac_2(t_list **stack_a, t_list **stack_b, char **av, int ac)
 {
 	av = ft_split(av[1], ' ');
 	if (!av[0])
 		free_array(av, 1);
 	check_av(av, 0);
-	stack_a = stack_init(av, 0);
+	*stack_a = stack_init(av, 0);
 	free_array(av, 0);
 }
 
@@ -49,10 +49,10 @@ int	main(int ac, char *av[])
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (ac < 2|| av[1][0] == '\0')
+	if (ac < 2 || av[1][0] == '\0')
 		return (EXIT_FAILURE);
 	else if (ac == 2)
-		if_ac_2(stack_a, stack_b, av, ac);
+		if_ac_2(&stack_a, &stack_b, av, ac);
 	else
 	{
 		check_av(av, 1);

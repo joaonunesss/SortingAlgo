@@ -6,7 +6,7 @@
 /*   By: jmarinho <jmarinho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 11:47:10 by jmarinho          #+#    #+#             */
-/*   Updated: 2023/08/03 14:26:39 by jmarinho         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:41:29 by jmarinho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	rotating_a(t_list **stack_a);
 void	srt_stacks(t_list **st_a, t_list **st_b, t_info nbr2srt, t_info tgt);
 void	put_all_a(t_list **stack_a, t_list **stack_b);
 t_info	find_nbr2move(t_list *stack_a, t_list *stack_b, t_info info_a);
-int		mv_calcs(t_info info_a, t_info info_b);
+int		move_calcs(t_info info_a, t_info info_b);
 void	check_errors(char *nbr, t_list **stack_a);
 int		check_position(t_list *list, int target);
 int		find_min(t_list *list);
